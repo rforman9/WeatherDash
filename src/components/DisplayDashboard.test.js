@@ -1,4 +1,4 @@
-import SectionList from './DashboardSections';
+import SectionList from './DisplayDashboard';
 
 const Dashboard = SectionList.makeTempSections()
 

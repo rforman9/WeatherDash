@@ -7,34 +7,32 @@ import CardContent from '@material-ui/core/CardContent';
 // import Section from '../components/Section'
 
 const RAINFALL_API_CALL = 'http://private-4945e-weather34.apiary-proxy.com/weather34/rain';
-const headingList = [
-  <div>
-    <h1>Pressure [hPa]</h1>
-  </div>,
-  <div>
-    <h1>% Chance of Rain</h1>
-  </div>,
-  <div>
-    <h1>Temperature [°C]</h1>
-  </div>,
-  <div>
-    <h1>Amount of Rainfall</h1>
-  </div>];
 
-class SectionList extends Component {
+class DisplayDashboard extends Component {
   state = {
     sections: []
   }
 
   constructor() {
     super()
-    this.makeTempSections()
+    this.state = {
+      display: true,
+      contentList: []
+    };
   }
 
-  makeTempSections = () => {
-    this.setState({
-      sections: headingList
-    })
+  componentDidMount() {
+    fetch('./data.json')
+      .then(response => response.json())
+      .then(result => {
+        const tempList = result.map(item => {
+          return item;
+        })
+        this.setState({
+          contentList: tempList
+        })
+      });
+
   }
 
 
@@ -42,15 +40,15 @@ class SectionList extends Component {
   render() {
     return (
       <div>
-        {this.state.sections ? (
+        {this.state.contentList ? (
           <div>
             <Grid container spacing={24} style={{ padding: 24 }}>
-              {this.state.sections.map(currentSection => (
-                <Grid item xs={12} sm={6} lg={4} xl={3}>
+              {this.state.contentList.map(currentSection => (
+                <Grid item xs={12} sm={6} >
                   <Card variant="outlined">
                     <CardContent>
                       <h5>
-                        {currentSection}
+                        {currentSection.headingText}
                       </h5>
                     </CardContent>
                   </Card>
@@ -64,4 +62,4 @@ class SectionList extends Component {
   }
 }
 
-export default SectionList;
+export default DisplayDashboard;

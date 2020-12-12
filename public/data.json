@@ -1,0 +1,36 @@
+  [
+    {
+      "contentName": "Pressure Slider",
+      "contentType": "dataSlider",
+      "headingText": "Pressure [hPa]",
+      "xRangeLo": 970,
+      "xRangeHi": 1030
+    },
+    {
+      "contentName": "Chance of Rain Chart",
+      "contentType": "chart",
+      "chartType": "interpolatedLine",
+      "headingText": "% Chance of Rain",
+      "xRangeLo": 1,
+      "xRangeHi": 7,
+      "yRangeLo": 0,
+      "yRangeHi": 100
+    },
+    {
+      "contentName": "Temerature Slider",
+      "contentType": "dataSlider",
+      "headingText": "Temperature [°C]",
+      "xRangeLo": "10",
+      "xRangeHi": "35"
+    },
+    {
+      "contentName": "Amount of Rainfall Chart",
+      "contentType": "chart",
+      "chartType": "bar",
+      "headingText": "Amount of Rainfall",
+      "xRangeLo": 1,
+      "xRangeHi": 7,
+      "yRangeLo": 0,
+      "yRangeHi": 200
+    }
+  ]

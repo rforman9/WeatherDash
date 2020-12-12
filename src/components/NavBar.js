@@ -9,7 +9,7 @@ const NavBar = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="title" color="inherit">
-            Weather Dashboard Challenge App - rforman
+            Weather Service Dashboard - R. Forman
           </Typography>
         </Toolbar>
       </AppBar>
