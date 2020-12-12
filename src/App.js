@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from './components/NavBar'
-import SectionList from './components/DashboardSections'
+import NavBar from './components/NavBar';
+import SectionList from './components/DashboardSections';
 import './App.css';
 
 console.log('section list is', SectionList);

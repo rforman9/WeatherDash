@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import Grid from '@material-ui/core/Grid'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
+import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 // import Slider from '../components/Slider'
 // import Graph from '../components/Graph'
 // import Section from '../components/Section'
 
-const RAINFALL_API_CALL = 'http://private-4945e-weather34.apiary-proxy.com/weather34/rain'
-const SECTIONS = [
+const RAINFALL_API_CALL = 'http://private-4945e-weather34.apiary-proxy.com/weather34/rain';
+const headingList = [
   <div>
     <h1>Pressure [hPa]</h1>
   </div>,
@@ -19,7 +19,7 @@ const SECTIONS = [
   </div>,
   <div>
     <h1>Amount of Rainfall</h1>
-  </div>,]
+  </div>];
 
 class SectionList extends Component {
   state = {
@@ -33,9 +33,11 @@ class SectionList extends Component {
 
   makeTempSections = () => {
     this.setState({
-      sections: SECTIONS
+      sections: headingList
     })
   }
+
+
 
   render() {
     return (
