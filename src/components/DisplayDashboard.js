@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 // import Slider from '../components/Slider'
 // import Graph from '../components/Graph'
-// import Section from '../components/Section'
 
 const RAINFALL_API_CALL = 'http://private-4945e-weather34.apiary-proxy.com/weather34/rain';
 
@@ -50,6 +49,12 @@ class DisplayDashboard extends Component {
                       <h5>
                         {currentSection.headingText}
                       </h5>
+                      <p>
+                        Content Type is {currentSection.contentType}
+                      </p>
+                      <p>
+                        xRange is {currentSection.xRangeLo} to {currentSection.xRangeHi}
+                      </p>
                     </CardContent>
                   </Card>
                 </Grid>
