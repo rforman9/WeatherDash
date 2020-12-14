@@ -10,7 +10,7 @@ const DataSlider = (props) => {
       { props.contentType === "dataSlider" ? (
         <Card variant="outlined">
           <CardContent>
-            <Typography gutterBottom variant="headline" component="h5">
+            <Typography gutterBottom variant="headline" component="h4">
               {props.headingText}
             </Typography>
             <Typography component="p">

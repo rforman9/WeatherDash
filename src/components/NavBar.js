@@ -8,7 +8,7 @@ const NavBar = () => {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="title" color="inherit">
+          <Typography variant="title" component="h3" color="inherit">
             Weather Service Dashboard - R. Forman
           </Typography>
         </Toolbar>
