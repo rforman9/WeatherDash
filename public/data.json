@@ -8,7 +8,7 @@
     },
     {
       "contentName": "Chance of Rain Chart",
-      "contentType": "chart",
+      "contentType": "line chart",
       "chartType": "interpolatedLine",
       "headingText": "% Chance of Rain",
       "xRangeLo": 1,
@@ -25,8 +25,8 @@
     },
     {
       "contentName": "Amount of Rainfall Chart",
-      "contentType": "chart",
-      "chartType": "bar",
+      "contentType": "bar chart",
+      "chartType": "default",
       "headingText": "Amount of Rainfall",
       "xRangeLo": 1,
       "xRangeHi": 7,

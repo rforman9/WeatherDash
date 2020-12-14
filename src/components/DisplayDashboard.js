@@ -45,10 +45,12 @@ class DisplayDashboard extends Component {
 
   CardMaker(sectionData) {
     switch (sectionData.contentType) {
-      case "dataSlider":
-        return DataSlider(sectionData);
-      default:
+      case "bar chart":
         return Chart(sectionData);
+      case "line chart":
+        return Chart(sectionData);
+      default:
+        return DataSlider(sectionData);
     }
   }
 

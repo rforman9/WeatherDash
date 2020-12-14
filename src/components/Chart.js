@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 const Chart = (props) => {
   return (
     <div>
-      { props.contentType === "chart" ? (
+      { props.contentType === "bar chart" || "line chart" ? (
         <Card variant="outlined">
           <CardContent>
             <Typography gutterBottom variant="headline" component="h5">
