@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-// import Slider from '../components/Slider'
-// import Graph from '../components/Graph'
+import DataSlider from '../components/DataSlider'
+import Chart from '../components/Chart'
 
 const RAINFALL_API_CALL = 'http://private-4945e-weather34.apiary-proxy.com/weather34/rain';
 
@@ -45,7 +43,14 @@ class DisplayDashboard extends Component {
 
   }
 
-  // console.log('rainfallByDay' is { this.state.rainfallByDay })
+  CardMaker(sectionData) {
+    switch (sectionData.contentType) {
+      case "dataSlider":
+        return DataSlider(sectionData);
+      default:
+        return Chart(sectionData);
+    }
+  }
 
   render() {
     return (
@@ -55,19 +60,7 @@ class DisplayDashboard extends Component {
             <Grid container spacing={24} style={{ padding: 24 }}>
               {this.state.contentList.map(currentSection => (
                 <Grid item xs={12} sm={6} >
-                  <Card variant="outlined">
-                    <CardContent>
-                      <h5>
-                        {currentSection.headingText}
-                      </h5>
-                      <p>
-                        Content Type is {currentSection.contentType}
-                      </p>
-                      <p>
-                        xRange is {currentSection.xRangeLo} to {currentSection.xRangeHi}
-                      </p>
-                    </CardContent>
-                  </Card>
+                  {this.CardMaker(currentSection)}
                 </Grid>
               ))}
             </Grid>
