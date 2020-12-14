@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 // import CartActions from '@material-ui/core/CardActions';
 
-const Chart = (props) => {
+const Chart = (props, chartData) => {
   return (
     <div>
       { props.contentType === "bar chart" || "line chart" ? (
