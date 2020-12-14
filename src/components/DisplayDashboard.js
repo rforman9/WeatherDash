@@ -16,7 +16,8 @@ class DisplayDashboard extends Component {
     super()
     this.state = {
       display: true,
-      contentList: []
+      contentList: [],
+      rainfallByDay: []
     };
   }
 
@@ -31,10 +32,20 @@ class DisplayDashboard extends Component {
           contentList: tempList
         })
       });
+    fetch(RAINFALL_API_CALL)
+      .then(response => response.json())
+      .then(result => {
+        const tempRainfall = result.map(item => {
+          return item;
+        })
+        this.setState({
+          rainfallByDay: tempRainfall
+        })
+      });
 
   }
 
-
+  // console.log('rainfallByDay' is { this.state.rainfallByDay })
 
   render() {
     return (
