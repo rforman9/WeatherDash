@@ -25,10 +25,8 @@ const RainfallChart = (props, rainfallData) => {
                 datasets: [{
                   label: props.headingText,
                   data: rainAmounts,
-                  BackgroundColor: [
-                    'rgba(75,75,192, 0.75)'
-                  ],
-                }]
+                  backgroundColor: 'rgba(60,120,240, 0.66)'
+                }],
               }}
               height={400}
               width={600}
