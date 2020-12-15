@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import DataSlider from '../components/DataSlider'
 import Chart from '../components/Chart'
+import RainfallChart from '../components/RainfallChart'
 
 const RAINFALL_API_CALL = 'http://private-4945e-weather34.apiary-proxy.com/weather34/rain';
 
@@ -50,7 +51,7 @@ class DisplayDashboard extends Component {
   CardMaker(sectionData) {
     switch (sectionData.contentType) {
       case "rainfall chart":
-        return Chart(sectionData, this.state.rainfallByDay);
+        return RainfallChart(sectionData, this.state.rainfallByDay);
       case "dataSlider":
         return DataSlider(sectionData);
       default:
