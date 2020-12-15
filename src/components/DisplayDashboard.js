@@ -42,7 +42,7 @@ class DisplayDashboard extends Component {
           return item;
         })
         this.setState({
-          rainfallByDay: tempRainfall
+          rainfallByDay: tempRainfall[0]
         })
       });
 
