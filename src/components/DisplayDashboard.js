@@ -50,7 +50,7 @@ class DisplayDashboard extends Component {
 
   CardMaker(sectionData) {
     switch (sectionData.contentType) {
-      case "rainfall chart":
+      case "rainfallChart":
         return RainfallChart(sectionData, this.state.rainfallByDay);
       case "dataSlider":
         return DataSlider(sectionData);

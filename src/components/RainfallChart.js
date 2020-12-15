@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as V from 'victory';
+import { Bar, Line } from 'react-chartjs-2';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 
 const RainfallChart = (props, chartData) => {
-  console.log(chartData)
+  console.log(chartData);
   return (
     <div>
       { props.contentType === "bar chart" || "line chart" ? (
@@ -29,6 +29,10 @@ const RainfallChart = (props, chartData) => {
             <Typography component="p">
               yRange is {props.yRangeLo} to {props.yRangeHi}
             </Typography>
+            <Bar
+              height={400}
+              width={600}
+            />
           </CardContent>
         </Card>
       ) : console.log("no dataslider content")}
