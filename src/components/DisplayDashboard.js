@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import DataSlider from '../components/DataSlider'
-import Chart from '../components/Chart'
+import lineChart from '../components/lineChart'
 import RainfallChart from '../components/RainfallChart'
 
 const RAINFALL_API_CALL = 'http://private-4945e-weather34.apiary-proxy.com/weather34/rain';
@@ -55,7 +55,7 @@ class DisplayDashboard extends Component {
       case "dataSlider":
         return DataSlider(sectionData);
       default:
-        return Chart(sectionData, this.chanceOfRain(970, 10, this.state.rainfallByDay));
+        return lineChart(sectionData, this.chanceOfRain(970, 10, this.state.rainfallByDay));
     }
   }
 

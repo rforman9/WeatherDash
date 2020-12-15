@@ -8,7 +8,10 @@ import CardContent from '@material-ui/core/CardContent';
 
 
 const RainfallChart = (props, chartData) => {
-  console.log(chartData);
+  var xLabels = [];
+  for (var o in chartData.days) {
+    xLabels.push(chartData.days[o].day)
+  }
   return (
     <div>
       { props.contentType === "bar chart" || "line chart" ? (
@@ -30,6 +33,9 @@ const RainfallChart = (props, chartData) => {
               yRange is {props.yRangeLo} to {props.yRangeHi}
             </Typography>
             <Bar
+              data={{
+                labels: xLabels
+              }}
               height={400}
               width={600}
             />
