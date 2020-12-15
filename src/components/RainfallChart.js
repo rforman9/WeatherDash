@@ -1,7 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 
 
@@ -26,6 +25,9 @@ const RainfallChart = (props, rainfallData) => {
                 datasets: [{
                   label: props.headingText,
                   data: rainAmounts,
+                  BackgroundColor: [
+                    'rgba(75,75,192, 0.75)'
+                  ],
                 }]
               }}
               height={400}
