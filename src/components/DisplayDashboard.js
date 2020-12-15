@@ -6,17 +6,21 @@ import Chart from '../components/Chart'
 const RAINFALL_API_CALL = 'http://private-4945e-weather34.apiary-proxy.com/weather34/rain';
 
 class DisplayDashboard extends Component {
-  state = {
-    sections: []
-  }
 
   constructor() {
     super()
     this.state = {
-      display: true,
       contentList: [],
-      rainfallByDay: []
+      rainfallByDay: [],
     };
+  }
+
+  chanceOfRain(pressure, temperature, amount) {
+    var score = Math.log(amount + 1) * Math.log(pressure - 929) * Math.log(temperature - 9);
+    var mean = Math.min(Math.max(score, 0), 100);
+    var upper_bound = Math.min(1.5 * mean, 100);
+    var lower_bound = Math.max(0.5 * mean, 0);
+    return [lower_bound, mean, upper_bound];
   }
 
   componentDidMount() {
@@ -50,7 +54,7 @@ class DisplayDashboard extends Component {
       case "dataSlider":
         return DataSlider(sectionData);
       default:
-        return Chart(sectionData);
+        return Chart(sectionData, this.chanceOfRain(970, 10, this.state.rainfallByDay));
     }
   }
 

@@ -1,10 +1,14 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import * as V from 'victory';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-// import CartActions from '@material-ui/core/CardActions';
+
+
 
 const Chart = (props, chartData) => {
+  console.log(chartData)
   return (
     <div>
       { props.contentType === "bar chart" || "line chart" ? (
