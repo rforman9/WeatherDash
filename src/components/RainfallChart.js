@@ -28,6 +28,22 @@ const RainfallChart = (props, rainfallData) => {
                   backgroundColor: 'rgba(60,120,240, 0.66)'
                 }],
               }}
+              options={{
+                scales: {
+                  yAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: props.yUnits
+                    }
+                  }],
+                  xAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: props.xUnits
+                    }
+                  }]
+                }
+              }}
               height={400}
               width={600}
             />

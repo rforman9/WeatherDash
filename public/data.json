@@ -11,8 +11,10 @@
       "contentType": "chart",
       "chartType": "interpolatedLine",
       "headingText": "% Chance of Rain",
+      "xUnits": "Days",
       "xRangeLo": 1,
       "xRangeHi": 7,
+      "yUnits": "%",
       "yRangeLo": 0,
       "yRangeHi": 100
     },
@@ -28,8 +30,10 @@
       "contentType": "rainfallChart",
       "chartType": "Bar",
       "headingText": "Amount of Rainfall",
+      "xUnits": "Days",
       "xRangeLo": 1,
       "xRangeHi": 7,
+      "yUnits": "l/m²",
       "yRangeLo": 0,
       "yRangeHi": 200
     }

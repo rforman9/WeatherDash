@@ -55,7 +55,11 @@ class DisplayDashboard extends Component {
       case "dataSlider":
         return DataSlider(sectionData);
       default:
-        return lineChart(sectionData, this.chanceOfRain(970, 10, this.state.rainfallByDay.days));
+        return lineChart(
+          sectionData,
+          this.chanceOfRain(970, 10, this.state.rainfallByDay.days),
+          this.state.rainfallByDay.days
+        );
     }
   }
 
