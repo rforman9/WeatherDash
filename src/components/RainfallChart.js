@@ -1,20 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Bar, Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 
 
 
-const RainfallChart = (props, chartData) => {
-  var xLabels = [];
-  for (var o in chartData.days) {
-    xLabels.push(chartData.days[o].day)
-  }
+const RainfallChart = (props, rainfallData) => {
+  console.log('rainfalldata = ', rainfallData);
+  // var xLabels = [];
+  // for (var o in rainfallData) {
+  //   xLabels.push(o.day);
+  // }
+  // console.log(xLabels);
   return (
     <div>
-      { props.contentType === "bar chart" || "line chart" ? (
+      { props.contentType === "rainfallChart" ? (
         <Card variant="outlined">
           <CardContent>
             <Typography gutterBottom variant="headline" component="h4">
@@ -33,9 +34,6 @@ const RainfallChart = (props, chartData) => {
               yRange is {props.yRangeLo} to {props.yRangeHi}
             </Typography>
             <Bar
-              data={{
-                labels: xLabels
-              }}
               height={400}
               width={600}
             />
