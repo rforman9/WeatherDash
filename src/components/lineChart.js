@@ -1,11 +1,10 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 
 const lineChart = (props, chartData, rainfallData) => {
-  console.log('chartdata =', chartData)
+  // console.log('chartdata =', chartData)
   var xLabels = [];
   var rainAmounts = [];
   for (var o in rainfallData) {
@@ -23,7 +22,7 @@ const lineChart = (props, chartData, rainfallData) => {
                 datasets: [{
                   label: props.headingText,
 
-                  backgroundColor: 'rgba(60,120,240, 0.66)'
+                  backgroundColor: 'rgba(240,120,60, 0.66)'
                 }],
               }}
               options={{

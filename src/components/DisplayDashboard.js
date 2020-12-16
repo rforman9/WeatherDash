@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import DataSlider from '../components/DataSlider'
 import lineChart from '../components/lineChart'
 import RainfallChart from '../components/RainfallChart'
+import chanceOfRain from '../components/chanceOfRain'
 
 const RAINFALL_API_CALL = 'http://private-4945e-weather34.apiary-proxy.com/weather34/rain';
 
@@ -13,15 +14,11 @@ class DisplayDashboard extends Component {
     this.state = {
       contentList: [],
       rainfallByDay: [],
+      pressure: 1010,
+      temperature: 15,
+      chanceOfRainDataSet: []
     };
-  }
-
-  chanceOfRain(pressure, temperature, amount) {
-    var score = Math.log(amount + 1) * Math.log(pressure - 929) * Math.log(temperature - 9);
-    var mean = Math.min(Math.max(score, 0), 100);
-    var upper_bound = Math.min(1.5 * mean, 100);
-    var lower_bound = Math.max(0.5 * mean, 0);
-    return [lower_bound, mean, upper_bound];
+    this.calcChanceOfRainState = this.calcChanceOfRainState.bind(this)
   }
 
   componentDidMount() {
@@ -44,8 +41,17 @@ class DisplayDashboard extends Component {
         this.setState({
           rainfallByDay: tempRainfall[0]
         })
-      });
+      })
+      .then(this.calcChanceOfRainState);
+  }
 
+  calcChanceOfRainState() {
+    const tempChanceRain = this.state.rainfallByDay.days.map(item => {
+      return chanceOfRain(this.state.pressure, this.state.temperature, item.amount)
+    })
+    this.setState({
+      chanceOfRainDataSet: tempChanceRain
+    })
   }
 
   CardMaker(sectionData) {
@@ -57,7 +63,7 @@ class DisplayDashboard extends Component {
       default:
         return lineChart(
           sectionData,
-          this.chanceOfRain(970, 10, this.state.rainfallByDay.days),
+          this.chanceOfRainDataSet,
           this.state.rainfallByDay.days
         );
     }

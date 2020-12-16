@@ -6,14 +6,12 @@ import CardContent from '@material-ui/core/CardContent';
 
 
 const RainfallChart = (props, rainfallData) => {
-  console.log('rainfalldata = ', rainfallData);
   var xLabels = [];
   var rainAmounts = [];
   for (var o in rainfallData) {
     xLabels.push(rainfallData[o].day);
     rainAmounts.push(rainfallData[o].amount);
   }
-  console.log(xLabels);
   return (
     <div>
       { props.contentType === "rainfallChart" ? (
