@@ -3,6 +3,10 @@ import { Line } from 'react-chartjs-2';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
+const defaultChartOptions = {
+  displayLegend: true,
+  legendPosition: 'right'
+}
 const lineChart = (props, chartData, rainfallData) => {
   console.log('chartData =', chartData)
   var xLabels = [];
@@ -30,25 +34,32 @@ const lineChart = (props, chartData, rainfallData) => {
                 labels: xLabels,
                 datasets: [
                   {
-                    label: "lower_bound",
-                    data: lower_bound,
-                    backgroundColor: 'rgba(240,120,60, 0.66)'
+                    label: "upper",
+                    data: upper_bound,
+                    backgroundColor: 'rgba(240,180,0, 0.66)'
+
                   },
                   {
                     label: "mean",
                     data: mean,
-                    backgroundColor: 'rgba(240,120,60, 0.66)'
+                    backgroundColor: 'rgba(240,120,30, 0.66)'
 
                   },
                   {
-                    label: "upper_bound",
-                    data: upper_bound,
-                    backgroundColor: 'rgba(240,120,60, 0.66)'
-
+                    label: "lower",
+                    data: lower_bound,
+                    backgroundColor: 'rgba(240,60,60, 0.66)'
                   }
                 ],
               }}
               options={{
+                legend: {
+                  position: "right",
+                },
+                title: {
+                  display: true,
+                  text: props.headingText
+                },
                 scales: {
                   yAxes: [{
                     ticks: {
