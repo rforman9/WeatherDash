@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import DataSlider from '../components/DataSlider'
 import lineChart from '../components/lineChart'
 import RainfallChart from '../components/RainfallChart'
-import chanceOfRain from '../components/chanceOfRain'
+import ChanceOfRain from './ChanceOfRain'
 
 const RAINFALL_API_CALL = 'http://private-4945e-weather34.apiary-proxy.com/weather34/rain';
 
@@ -47,7 +47,7 @@ class DisplayDashboard extends Component {
 
   calcChanceOfRainState() {
     const tempChanceRain = this.state.rainfallByDay.days.map(item => {
-      return chanceOfRain(this.state.pressure, this.state.temperature, item.amount)
+      return ChanceOfRain(this.state.pressure, this.state.temperature, item.amount)
     })
     this.setState({
       chanceOfRainDataSet: tempChanceRain

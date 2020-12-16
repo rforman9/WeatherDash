@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 const lineChart = (props, chartData, rainfallData) => {
-  // console.log('chartdata =', chartData)
+  console.log('chartdata =', chartData)
   var xLabels = [];
   var rainAmounts = [];
   for (var o in rainfallData) {
@@ -21,7 +21,7 @@ const lineChart = (props, chartData, rainfallData) => {
                 labels: xLabels,
                 datasets: [{
                   label: props.headingText,
-
+                  data: chartData,
                   backgroundColor: 'rgba(240,120,60, 0.66)'
                 }],
               }}

@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-// import CartActions from '@material-ui/core/CardActions';
+// import CardActions from '@material-ui/core/CardActions';
 
 let DataSlider = (props) => {
 
