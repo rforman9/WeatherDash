@@ -8,7 +8,6 @@ const defaultChartOptions = {
   legendPosition: 'right'
 }
 const lineChart = (props, chartData, rainfallData) => {
-  console.log('chartData =', chartData)
   var xLabels = [];
   var rainAmounts = [];
   var mean = [];

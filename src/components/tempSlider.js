@@ -18,7 +18,14 @@ let tempSlider = (props) => {
               Range is {props.xRangeLo} to {props.xRangeHi}
             </Typography>
             <div className="slidecontainer">
-              <input class="slider" id={props.contentName} type="range" min={props.xRangeLo} max={props.xRangeHi} defaultValue={props.xRangeLo} step="1" />
+              <input
+                class="slider"
+                id={props.contentName}
+                type="range"
+                min={props.xRangeLo}
+                max={props.xRangeHi}
+                defaultValue={props.xRangeLo}
+                step="1" />
               <p>Value: <span id={props.contentName + "val"}></span></p>
             </div>
           </CardContent>

@@ -75,9 +75,9 @@ class DisplayDashboard extends Component {
       case "rainfallChart":
         return RainfallChart(sectionData, this.state.rainfallByDay.days);
       case "tempSlider":
-        return tempSlider(sectionData);
+        return tempSlider(sectionData, this.handleTempChange);
       case "pressureSlider":
-        return pressureSlider(sectionData);
+        return pressureSlider(sectionData, this.handlePressureChange);
       default:
         return lineChart(
           sectionData,
