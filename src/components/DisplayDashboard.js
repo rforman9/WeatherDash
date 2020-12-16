@@ -19,6 +19,7 @@ class DisplayDashboard extends Component {
       chanceOfRainDataSet: []
     };
     this.calcChanceOfRainState = this.calcChanceOfRainState.bind(this)
+    this.cardMaker = this.cardMaker.bind(this)
   }
 
   componentDidMount() {
@@ -54,7 +55,7 @@ class DisplayDashboard extends Component {
     })
   }
 
-  CardMaker(sectionData) {
+  cardMaker(sectionData) {
     switch (sectionData.contentType) {
       case "rainfallChart":
         return RainfallChart(sectionData, this.state.rainfallByDay.days);
@@ -63,7 +64,7 @@ class DisplayDashboard extends Component {
       default:
         return lineChart(
           sectionData,
-          this.chanceOfRainDataSet,
+          this.state.chanceOfRainDataSet,
           this.state.rainfallByDay.days
         );
     }
@@ -77,7 +78,7 @@ class DisplayDashboard extends Component {
             <Grid container spacing={24} style={{ padding: 24 }}>
               {this.state.contentList.map(currentSection => (
                 <Grid item xs={12} sm={6} >
-                  {this.CardMaker(currentSection)}
+                  {this.cardMaker(currentSection)}
                 </Grid>
               ))}
             </Grid>

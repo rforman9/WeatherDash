@@ -15,9 +15,6 @@ let DataSlider = (props) => {
               {props.headingText}
             </Typography>
             <Typography component="p">
-              Content Type is {props.contentType}
-            </Typography>
-            <Typography component="p">
               Range is {props.xRangeLo} to {props.xRangeHi}
             </Typography>
             <div className="slidecontainer">
