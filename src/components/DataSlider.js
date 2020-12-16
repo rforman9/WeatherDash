@@ -9,7 +9,7 @@ let DataSlider = (props) => {
   return (
     <div>
       { props.contentType === "dataSlider" ? (
-        <Card variant="outlined">
+        <Card variant="outlined" >
           <CardContent>
             <Typography gutterBottom variant="headline" component="h4">
               {props.headingText}
