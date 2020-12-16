@@ -4,11 +4,11 @@ import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 // import CardActions from '@material-ui/core/CardActions';
 
-let DataSlider = (props) => {
+let pressureSlider = (props) => {
 
   return (
     <div>
-      { props.contentType === "dataSlider" ? (
+      { props.contentType === "pressureSlider" ? (
         <Card variant="outlined" >
           <CardContent>
             <Typography gutterBottom variant="headline" component="h4">
@@ -27,4 +27,4 @@ let DataSlider = (props) => {
     </div>
   )
 }
-export default DataSlider
+export default pressureSlider

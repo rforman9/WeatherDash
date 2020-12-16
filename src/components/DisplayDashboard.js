@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import DataSlider from '../components/DataSlider'
+import tempSlider from '../components/tempSlider'
+import pressureSlider from '../components/pressureSlider'
 import lineChart from '../components/lineChart'
 import RainfallChart from '../components/RainfallChart'
 import ChanceOfRain from './ChanceOfRain'
@@ -20,6 +21,8 @@ class DisplayDashboard extends Component {
     };
     this.calcChanceOfRainState = this.calcChanceOfRainState.bind(this)
     this.cardMaker = this.cardMaker.bind(this)
+    this.handlePressureChange = this.handlePressureChange.bind(this)
+    this.handleTempChange = this.handleTempChange.bind(this)
   }
 
   componentDidMount() {
@@ -46,6 +49,18 @@ class DisplayDashboard extends Component {
       .then(this.calcChanceOfRainState);
   }
 
+  handlePressureChange(event) {
+    this.setState({
+      pressure: event.target.value
+    });
+  }
+
+  handleTempChange(event) {
+    this.setState({
+      temperature: event.target.value
+    });
+  }
+
   calcChanceOfRainState() {
     const tempChanceRain = this.state.rainfallByDay.days.map(item => {
       return ChanceOfRain(this.state.pressure, this.state.temperature, item.amount)
@@ -59,8 +74,10 @@ class DisplayDashboard extends Component {
     switch (sectionData.contentType) {
       case "rainfallChart":
         return RainfallChart(sectionData, this.state.rainfallByDay.days);
-      case "dataSlider":
-        return DataSlider(sectionData);
+      case "tempSlider":
+        return tempSlider(sectionData);
+      case "pressureSlider":
+        return pressureSlider(sectionData);
       default:
         return lineChart(
           sectionData,

@@ -1,7 +1,7 @@
   [
     {
       "contentName": "Pressure Slider",
-      "contentType": "dataSlider",
+      "contentType": "pressureSlider",
       "headingText": "Pressure [hPa]",
       "xRangeLo": 970,
       "xRangeHi": 1030
@@ -20,7 +20,7 @@
     },
     {
       "contentName": "Temerature Slider",
-      "contentType": "dataSlider",
+      "contentType": "tempSlider",
       "headingText": "Temperature [°C]",
       "xRangeLo": "10",
       "xRangeHi": "35"
