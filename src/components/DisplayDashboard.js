@@ -1,109 +1,104 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Grid from '@material-ui/core/Grid';
-import tempSlider from '../components/tempSlider'
-import pressureSlider from '../components/pressureSlider'
-import lineChart from '../components/lineChart'
+import TempSlider from '../components/tempSlider'
+import PressureSlider from '../components/pressureSlider'
+import LineChart from '../components/lineChart'
 import RainfallChart from '../components/RainfallChart'
 import ChanceOfRain from './ChanceOfRain'
 
-const RAINFALL_API_CALL = 'http://private-4945e-weather34.apiary-proxy.com/weather34/rain';
+// Using Open-Meteo API for Berlin (default location)
+const RAINFALL_API_CALL = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=precipitation_sum&forecast_days=7';
 
-class DisplayDashboard extends Component {
+const DisplayDashboard = () => {
+  const [contentList, setContentList] = useState([]);
+  const [rainfallByDay, setRainfallByDay] = useState({ days: [] });
+  const [pressure, setPressure] = useState(1010);
+  const [temperature, setTemperature] = useState(15);
+  const [chanceOfRainDataSet, setChanceOfRainDataSet] = useState([]);
 
-  constructor() {
-    super()
-    this.state = {
-      contentList: [],
-      rainfallByDay: [],
-      pressure: 1010,
-      temperature: 15,
-      chanceOfRainDataSet: []
-    };
-    this.calcChanceOfRainState = this.calcChanceOfRainState.bind(this)
-    this.cardMaker = this.cardMaker.bind(this)
-    this.handlePressureChange = this.handlePressureChange.bind(this)
-    this.handleTempChange = this.handleTempChange.bind(this)
-  }
-
-  componentDidMount() {
+  // Fetch data on mount
+  useEffect(() => {
     fetch('./data.json')
       .then(response => response.json())
       .then(result => {
-        const tempList = result.map(item => {
-          return item;
-        })
-        this.setState({
-          contentList: tempList
-        })
+        setContentList(result);
       });
+
     fetch(RAINFALL_API_CALL)
       .then(response => response.json())
       .then(result => {
-        const tempRainfall = result.map(item => {
-          return item;
-        })
-        this.setState({
-          rainfallByDay: tempRainfall[0]
-        })
+        if (result && result.daily && result.daily.precipitation_sum) {
+          // Map Open-Meteo format to app format
+          const mappedData = {
+            days: result.daily.precipitation_sum.map((amount, index) => ({
+              day: index + 1,
+              amount: amount
+            }))
+          };
+          setRainfallByDay(mappedData);
+        }
       })
-      .then(this.calcChanceOfRainState);
-  }
+      .catch(error => console.error("Error fetching rainfall data:", error));
+  }, []);
 
-  handlePressureChange(event) {
-    this.setState({
-      pressure: event.target.value
-    });
-  }
+  // Recalculate chance of rain when dependencies change
+  useEffect(() => {
+    if (rainfallByDay.days && rainfallByDay.days.length > 0) {
+      const tempChanceRain = rainfallByDay.days.map(item => {
+        return ChanceOfRain(pressure, temperature, item.amount);
+      });
+      setChanceOfRainDataSet(tempChanceRain);
+    }
+  }, [pressure, temperature, rainfallByDay]);
 
-  handleTempChange(event) {
-    this.setState({
-      temperature: event.target.value
-    });
-  }
+  const handlePressureChange = (event) => {
+    setPressure(Number(event.target.value));
+  };
 
-  calcChanceOfRainState() {
-    const tempChanceRain = this.state.rainfallByDay.days.map(item => {
-      return ChanceOfRain(this.state.pressure, this.state.temperature, item.amount)
-    })
-    this.setState({
-      chanceOfRainDataSet: tempChanceRain
-    })
-  }
+  const handleTempChange = (event) => {
+    setTemperature(Number(event.target.value));
+  };
 
-  cardMaker(sectionData) {
+  const cardMaker = (sectionData) => {
     switch (sectionData.contentType) {
       case "rainfallChart":
-        return RainfallChart(sectionData, this.state.rainfallByDay.days);
+        return RainfallChart(sectionData, rainfallByDay.days || []);
       case "tempSlider":
-        return tempSlider(sectionData, this.handleTempChange);
+        return TempSlider({
+          ...sectionData,
+          value: temperature,
+          onChange: handleTempChange
+        });
       case "pressureSlider":
-        return pressureSlider(sectionData, this.handlePressureChange);
+        return PressureSlider({
+          ...sectionData,
+          value: pressure,
+          onChange: handlePressureChange
+        });
       default:
-        return lineChart(
+        return LineChart(
           sectionData,
-          this.state.chanceOfRainDataSet,
-          this.state.rainfallByDay.days
+          chanceOfRainDataSet,
+          rainfallByDay.days || []
         );
     }
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        {this.state.contentList ? (
-          <div>
-            <Grid container spacing={24} style={{ padding: 24 }}>
-              {this.state.contentList.map(currentSection => (
-                <Grid item xs={12} sm={6} >
-                  {this.cardMaker(currentSection)}
-                </Grid>
-              ))}
-            </Grid>
-          </div>
-        ) : "no Dashboard Sections found"}
-      </div>
-    )
-  }
+  return (
+    <div>
+      {contentList.length > 0 ? (
+        <div>
+          <Grid container spacing={3} style={{ padding: 24 }}>
+            {contentList.map((currentSection, index) => (
+              <Grid item xs={12} sm={6} key={index}>
+                {cardMaker(currentSection)}
+              </Grid>
+            ))}
+          </Grid>
+        </div>
+      ) : "Loading Dashboard..."}
+    </div>
+  );
 }
 
 export default DisplayDashboard;

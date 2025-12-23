@@ -24,9 +24,9 @@ const lineChart = (props, chartData, rainfallData) => {
 
   }
   return (
-    <div>
-      { props.contentType === "chart" ? (
-        <Card variant="outlined">
+    <div style={{ height: '100%' }}>
+      {props.contentType === "chart" ? (
+        <Card variant="outlined" style={{ height: '100%' }}>
           <CardContent>
             <Line
               data={{

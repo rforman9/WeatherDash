@@ -13,9 +13,9 @@ const RainfallChart = (props, rainfallData) => {
     rainAmounts.push(rainfallData[o].amount);
   }
   return (
-    <div>
-      { props.contentType === "rainfallChart" ? (
-        <Card variant="outlined">
+    <div style={{ height: '100%' }}>
+      {props.contentType === "rainfallChart" ? (
+        <Card variant="outlined" style={{ height: '100%' }}>
           <CardContent>
             <Bar
               data={{
